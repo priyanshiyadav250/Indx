@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People Data Storage</title>
+  <style> .container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+input[type="text"], button {
+  margin: 5px;
+}
+
+#output {
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>People Data Storage</h1>
+    <input type="text" id="nameInput" placeholder="Enter Name">
+    <button onclick="addData()">Add Data</button>
+    <button onclick="retrieveData()">Retrieve Data</button>
+    <div id="output"></div>
+  </div>
+  <script> function addData() {
+  var name = document.getElementById("nameInput").value;
+  var data = prompt("Enter data for " + name + ":");
+  if (name && data) {
+    localStorage.setItem(name, data);
+    alert("Data added successfully!");
+  } else {
+    alert("Name and data cannot be empty!");
+  }
+}
+
+function retrieveData() {
+  var outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = ""; // Clear previous output
+  for (var i = 0; i < localStorage.length; i++) {
+    var name = localStorage.key(i);
+    var data = localStorage.getItem(name);
+    var paragraph = document.createElement("p");
+    paragraph.textContent = name + ": " + data;
+    outputDiv.appendChild(paragraph);
+  }
+}
+</script>
+</body>
+</html>
+
